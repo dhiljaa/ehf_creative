@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 
@@ -61,25 +61,16 @@ const Testimonials = () => {
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
   };
 
   return (
@@ -101,133 +92,69 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        {/* Main Testimonial Slider */}
+        {/* Testimonial Slider */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-12"
+          className="relative max-w-4xl mx-auto"
         >
-          <div className="relative max-w-4xl mx-auto">
-            <Card className="border-border/50 shadow-medium">
-              <CardContent className="p-8 md:p-12">
-                <div className="text-center">
-                  <Quote className="w-12 h-12 text-primary mx-auto mb-6" />
-                  
-                  <div className="flex justify-center mb-6">
-                    {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  
-                  <blockquote className="text-lg md:text-xl text-foreground mb-6 font-medium leading-relaxed">
-                    "{testimonials[currentIndex].text}"
-                  </blockquote>
-                  
-                  <div className="space-y-2">
-                    <p className="font-semibold text-foreground">
-                      {testimonials[currentIndex].name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonials[currentIndex].project}
-                    </p>
-                  </div>
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group border border-border/20"
+          >
+            <ChevronLeft className="w-6 h-6 text-primary" />
+          </button>
+
+          <button
+            onClick={goToNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group border border-border/20"
+          >
+            <ChevronRight className="w-6 h-6 text-primary" />
+          </button>
+
+          <Card className="border-border/50 shadow-lg">
+            <CardContent className="p-8 md:p-12">
+              <div className="text-center">
+                <Quote className="w-12 h-12 text-primary mx-auto mb-6" />
+                
+                <div className="flex justify-center mb-6">
+                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Navigation Dots */}
-            <div className="flex justify-center space-x-2 mt-8">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-primary scale-125' 
-                      : 'bg-muted hover:bg-muted-foreground/50'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Testimonial Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {testimonials.slice(0, 6).map((testimonial, index) => (
-            <motion.div key={testimonial.id} variants={cardVariants}>
-              <Card className="h-full hover:shadow-medium transition-all duration-300 hover:-translate-y-1 border-border/50 group">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <Quote className="w-6 h-6 text-primary/60" />
-                  </div>
-                  
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-4 leading-relaxed">
-                    "{testimonial.text}"
+                
+                <blockquote className="text-lg md:text-xl text-foreground mb-8 font-medium leading-relaxed">
+                  "{testimonials[currentIndex].text}"
+                </blockquote>
+                
+                <div className="space-y-2">
+                  <p className="font-semibold text-foreground text-lg">
+                    {testimonials[currentIndex].name}
                   </p>
-                  
-                  <div className="space-y-1">
-                    <p className="font-medium text-foreground text-sm">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.project}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+                  <p className="text-muted-foreground">
+                    {testimonials[currentIndex].project}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-center mt-16"
-        >
-          <h3 className="text-2xl font-display font-bold text-foreground mb-4">
-            Siap Bergabung dengan Klien yang Puas?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Jadilah bagian dari 100+ klien yang telah mempercayakan project digital mereka kepada EHF Creative
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                window.open('https://wa.me/6289675280409?text=Halo%20EHF%20Creative%2C%20saya%20ingin%20konsultasi%20project%20baru', '_blank');
-              }}
-              className="px-8 py-3 brand-gradient text-white rounded-lg font-medium hover:shadow-medium transition-all duration-300"
-            >
-              Mulai Project Sekarang
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-300"
-            >
-              Konsultasi Gratis
-            </motion.button>
+          {/* Navigation Dots */}
+          <div className="flex justify-center space-x-3 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-primary scale-125' 
+                    : 'bg-muted hover:bg-muted-foreground/50'
+                }`}
+              />
+            ))}
           </div>
         </motion.div>
       </div>

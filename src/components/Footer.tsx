@@ -33,7 +33,7 @@ const Footer = () => {
     {
       name: 'Email',
       icon: Mail,
-      href: 'mailto:ehfcreative@zohomail.com',
+      href: 'mailto:info@ehfcreative.xyz',
       color: 'hover:text-blue-500'
     },
     {
@@ -60,7 +60,7 @@ const Footer = () => {
             >
               <div className="flex items-center space-x-3 mb-6">
                 <img 
-                  src="/lovable-uploads/6d4792c8-ada1-4c35-8980-11d128b0ec10.png" 
+                  src="/ehf-logo.png" 
                   alt="EHF Creative Logo" 
                   className="w-12 h-12 object-contain"
                 />
@@ -172,7 +172,7 @@ const Footer = () => {
                     href="mailto:ehfcreative@zohomail.com"
                     className="text-primary hover:text-primary/80 transition-smooth font-medium"
                   >
-                    ehfcreative@zohomail.com
+                    info@ehfcreative.xyz
                   </a>
                 </div>
 

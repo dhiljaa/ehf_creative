@@ -70,18 +70,6 @@ const Hero = () => {
                 Mulai Konsultasi
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-smooth" />
               </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="group hover:bg-accent border-2 hover:border-primary transition-smooth"
-                onClick={() => {
-                  document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-smooth" />
-                Lihat Portfolio
-              </Button>
             </motion.div>
 
             {/* Stats */}
@@ -92,7 +80,7 @@ const Hero = () => {
               className="grid grid-cols-3 gap-8 pt-8"
             >
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">50+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary">20+</div>
                 <div className="text-sm text-muted-foreground">Project Selesai</div>
               </div>
               <div className="text-center">

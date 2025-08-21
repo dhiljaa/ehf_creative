@@ -44,7 +44,7 @@ const Navbar = () => {
           >
             <a href="#home" className="flex items-center space-x-3">
               <img 
-                src="/lovable-uploads/6d4792c8-ada1-4c35-8980-11d128b0ec10.png" 
+                src="/ehf-logo.png" 
                 alt="EHF Creative Logo" 
                 className="w-10 h-10 object-contain"
               />

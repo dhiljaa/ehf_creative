@@ -143,7 +143,7 @@ const WhyChooseUs = () => {
                 transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
                 className="space-y-2"
               >
-                <div className="text-3xl lg:text-4xl font-bold text-primary">50+</div>
+                <div className="text-3xl lg:text-4xl font-bold text-primary">20+</div>
                 <div className="text-sm lg:text-base text-muted-foreground">Project Completed</div>
               </motion.div>
               
@@ -176,7 +176,7 @@ const WhyChooseUs = () => {
                 transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
                 className="space-y-2"
               >
-                <div className="text-3xl lg:text-4xl font-bold text-primary">3+</div>
+                <div className="text-3xl lg:text-4xl font-bold text-primary">1+</div>
                 <div className="text-sm lg:text-base text-muted-foreground">Years Experience</div>
               </motion.div>
             </div>

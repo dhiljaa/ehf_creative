@@ -30,9 +30,9 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      info: 'ehfcreative@zohomail.com',
+      info: 'info@ehfcreative.xyz',
       description: 'Untuk pertanyaan detail dan proposal',
-      link: 'mailto:ehfcreative@zohomail.com',
+      link: 'mailto:info@ehfcreative.xyz',
       color: 'from-blue-500 to-blue-600'
     },
     {
@@ -192,11 +192,11 @@ Terima kasih!`;
                 <CardContent className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Senin - Jumat</span>
-                    <span className="font-medium">09:00 - 18:00</span>
+                    <span className="font-medium">08:00 - 22:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Sabtu</span>
-                    <span className="font-medium">09:00 - 15:00</span>
+                    <span className="font-medium">09:00 - 17:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Minggu</span>
